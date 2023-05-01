@@ -1,5 +1,6 @@
- # Functions go here
-def choice_checker(question):
+
+# Functions go here
+def choice_checker(question, valid_list, error):
 
     error = "Please choose from rock / paper/ scissors (or xxx to quit)"
 
@@ -8,6 +9,13 @@ def choice_checker(question):
 
         # Ask user for choice (and put in lowercase)
         response = input(question).lower()
+
+        for item in valid_list:
+            if response == item[0] or response == item:
+                return response
+
+        print(error)
+        print()
 
         if response == "r" or response == "rock":
             return response
@@ -29,8 +37,7 @@ user_choice = ""
 while user_choice != "xxx":
 
     # Ask user for choice and check its valid
-    user_choice = choice_checker("choice rock / paper/ scissors (r/p/s): , Please choose from rock / paper/ scissors "
-                                 "(or xxx to quit)")
+    user_choice = choice_checker("choice rock / paper/ scissors (r/p/s): , Please choose from rock / paper/ scissors (or xxx to quit)")
 
     # print out choice for comparison purposes
     print("You chose{}".format(user_choice))

@@ -4,6 +4,7 @@ def choice_checker(question):
     error = "Please choose from rock / paper/ scissors (or xxx to quit)"
 
     valid = False
+
     while not valid:
 
         # Ask user for choice (and put in lowercase)
