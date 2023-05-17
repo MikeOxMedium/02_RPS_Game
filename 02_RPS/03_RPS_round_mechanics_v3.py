@@ -34,18 +34,19 @@ end_game = "no"
 while end_game == "no":
 
     print()
-    if round == "":
-        heading = "Continuous Mode: Round {}".format(rounds_played + 1)
-        print(heading)
-        choose = input("{} or 'xxx' to end:".format(choose_instruction))
-        if choose == "xxx":
-            break
+    if rounds == "":
+        heading = "Continuous Mode: " \
+                  "Round {}".format(rounds_played + 1)
     else:
-        heading = "Round {} of {}".format(rounds_played + 1, rounds)
-        print(heading)
-        choose = input(choose_instruction)
-        if rounds_played == rounds - 1:
-            end_game = "yes"
+        heading = "Round {} of " \
+                  "{}".format(rounds_played + 1, rounds)
+
+    print(heading)
+    choose = input("{} or 'xxx' to "
+                   "end: ".format(choose_instruction))
+
+    if choose == "xxx":
+        break
 
     print("You chose {}".format(choose))
 
