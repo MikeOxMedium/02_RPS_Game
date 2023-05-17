@@ -48,8 +48,5 @@ while end_game == "no":
     if choose == "xxx":
         break
 
-    print("You chose {}".format(choose))
-
-    rounds_played += 1
 
 print("Thank you for playing")
