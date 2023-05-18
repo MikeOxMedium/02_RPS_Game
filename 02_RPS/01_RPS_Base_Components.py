@@ -39,7 +39,7 @@ def choice_checker(question, valid_list, error):
 
 # Main routine goes here
 
-# Lists of vaild resonses
+# Lists of valid responses
 yes_no_list = ["yes", "no"]
 rps_list = ["rock", "paper", "scissors", "xxx"]
 
@@ -51,6 +51,8 @@ mode = "regular"
 
 # ask user for # of rounds then loop...
 rounds_played = 0
+rounds_lost = 0
+rounds_drawn = 0
 choose_instruction = "Please choose rock (r), paper" \
                      "(p) or scissors (s)"
 
@@ -74,11 +76,46 @@ while rounds_played < rounds:
     print(heading)
     # choose = input("{} or 'xxx' to end: ".format(choose_instruction))
 
-    choose = choice_checker(f"{choose_instruction} or 'xxx' to quit: ", rps_list, "Please enter R / P / S")
+    user_choice = choice_checker(f"{choose_instruction} or 'xxx' to quit: ", rps_list, "Please enter R / P / S")
 
-    if choose == "xxx":
+    #  get computer choice
+    comp_choice = random.choice(rps_list[:-1])
+    print("Comp Choice: ", comp_choice)
+
+    # compare choices
+    if comp_choice == user_choice:
+        result = "tie"
+        rounds_drawn += 1
+    elif user_choice == "rock" and comp_choice == "scissors":
+        result = "won"
+    elif user_choice == "paper" and comp_choice == "rock":
+        result = "won"
+    elif user_choice == "scissors" and comp_choice == "paper":
+        result = "won"
+    else:
+        result = "Lost"
+        rounds_lost += 1
+
+    if result == "tie":
+        feedback = "It's a tie"
+    else:
+        feedback = "{} vs {} - you {}".format(user_choice, comp_choice, result)
+    if user_choice == "xxx":
         break
 
-    print("you chose", choose)
+    print(feedback)
 
     rounds_played += 1
+
+# Show game statistics
+rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+print()
+print('***** End Game Summary *****')
+print("Won: {} \t|\t Lost: {} \t|\t Draw: "
+      "{}".format(rounds_won, rounds_lost, rounds_drawn))
+print()
+print("Thanks for playing")
+
+
+
